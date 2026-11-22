@@ -16,17 +16,32 @@ et la clé `MISTRAL_API_KEY` ne quitte jamais le serveur (elle est lue via
 npm install
 ```
 
-## Configuration de la clé API
+## Configuration du fichier `.env`
 
 ```bash
-cp .env.example .env
+cp .env.example .env        # Mac/Linux
+copy .env.example .env       # Windows (cmd)
 ```
 
-Puis éditez `.env` et remplacez la valeur par votre clé Mistral :
+Puis ouvrez `.env` avec un éditeur de texte (Bloc-notes, TextEdit…) et remplissez
+**une seule ligne par réglage, sans espaces autour du `=`** :
 
 ```
-MISTRAL_API_KEY=...   # collez votre clé en entier, sans espaces (elle peut commencer par « sk- » ou « mstrl- »)
+MISTRAL_API_KEY=...        # votre clé Mistral en entier (commence par « sk- » ou « mstrl- »)
+GOOGLE_DRIVE_CREDENTIALS=  # AU CHOIX : contenu JSON de la clé du compte de service sur UNE ligne,
+                           # ou simplement le CHEMIN du fichier .json téléchargé, ex. sous Windows :
+                           # GOOGLE_DRIVE_CREDENTIALS=C:/Users/rodri/Downloads/pmje-xxxx.json
+                           # (utilisez des / et non des \ dans le chemin)
+DRIVE_ROOT_FOLDER_ID=      # optionnel : ID du dossier Drive partagé (la partie après /folders/ dans l'URL) ; vide = dossier « PMJE - Observations » créé à la racine
+GOOGLE_CLIENT_ID=...       # ID client OAuth (termine par .apps.googleusercontent.com)
+GOOGLE_CLIENT_SECRET=...   # secret client OAuth
+GOOGLE_OAUTH_REDIRECT_URI= # laissez vide : http://localhost:3000/auth/callback sera utilisé (à enregistrer dans Google Cloud)
+ALLOWED_EMAILS=...         # email(s) Google autorisé(s) à se connecter, séparés par des virgules
 ```
+
+Règles importantes : ne mettez **aucun espace** autour des `=` ; le JSON du compte
+de service doit tenir sur **une seule ligne** (d'où l'option « chemin de fichier »,
+plus simple) ; sauvegardez avec Ctrl+S sans renommer le fichier.
 
 `.env` est ignoré par git (voir `.gitignore`) : ne commitez jamais votre clé.
 
