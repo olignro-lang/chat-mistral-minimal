@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Observations PMJE</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <section class="card login" id="login-view" hidden>
+      <h2>Connexion requise</h2>
+      <p>Connectez-vous avec votre compte Google autorisé pour gérer les observations PMJE.</p>
+      <a class="btn" href="/auth/login">Se connecter avec Google</a>
+    </section>
+
+    <main class="chat" id="app" hidden>
+      <header class="chat-header">
+        <h1>Observations PMJE</h1>
+        <p class="model">
+          Connecté : <span id="user-email"></span> ·
+          <a href="/auth/logout">Se déconnecter</a>
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>Nouvelle observation (PMJE)</h2>
+        <ul id="domaines" class="domaines"></ul>
+        <form id="classify-form" class="classify-form">
+          <label class="field">
+            Élève
+            <select id="eleve" required></select>
+          </label>
+          <div class="add-eleve">
+            <input id="nouvel-eleve" type="text" placeholder="Ajouter un élève à la liste…" autocomplete="off" />
+            <button type="button" id="ajouter-eleve">Ajouter</button>
+          </div>
+          <label class="field">
+            Photo
+            <input id="photo" type="file" accept="image/*" required />
+          </label>
+          <label class="field">
+            Commentaire de l'enseignante
+            <textarea id="comment" rows="3" placeholder="Ex. : Léo a construit une tour avec les blocs et a aidé Mia à ramasser." required></textarea>
+          </label>
+          <button type="submit" id="classify-btn">Classer et enregistrer</button>
+        </form>
+        <div id="classify-result" class="result" hidden></div>
+      </section>
+
+      <section id="log" class="log" aria-live="polite"></section>
+      <form id="form" class="composer">
+        <input
+          id="input"
+          type="text"
+          placeholder="Écrivez un message…"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="send">Envoyer</button>
+      </form>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
